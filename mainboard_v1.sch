@@ -5136,7 +5136,7 @@ Source: http://www.murata.com .. GRM43DR72E224KW01.pdf</description>
 <wire x1="185.42" y1="86.36" x2="185.42" y2="88.9" width="0.1524" layer="91"/>
 </segment>
 </net>
-<net name="CATH7" class="0">
+<net name="SEG_D" class="0">
 <segment>
 <pinref part="CATHODES" gate="G$1" pin="4"/>
 <wire x1="73.66" y1="58.42" x2="66.04" y2="58.42" width="0.1524" layer="91"/>
@@ -5148,7 +5148,7 @@ Source: http://www.murata.com .. GRM43DR72E224KW01.pdf</description>
 <label x="73.66" y="30.48" size="1.778" layer="95"/>
 </segment>
 </net>
-<net name="CATH6" class="0">
+<net name="SEG_E" class="0">
 <segment>
 <pinref part="CATHODES" gate="G$1" pin="2"/>
 <wire x1="73.66" y1="60.96" x2="66.04" y2="60.96" width="0.1524" layer="91"/>
@@ -5160,7 +5160,7 @@ Source: http://www.murata.com .. GRM43DR72E224KW01.pdf</description>
 <label x="73.66" y="33.02" size="1.778" layer="95"/>
 </segment>
 </net>
-<net name="CATH5" class="0">
+<net name="SEG_C" class="0">
 <segment>
 <pinref part="HDRRIGHT" gate="G$1" pin="10"/>
 <wire x1="76.2" y1="27.94" x2="68.58" y2="27.94" width="0.1524" layer="91"/>
@@ -5172,7 +5172,7 @@ Source: http://www.murata.com .. GRM43DR72E224KW01.pdf</description>
 <label x="68.58" y="50.8" size="1.778" layer="95"/>
 </segment>
 </net>
-<net name="CATH4" class="0">
+<net name="SEG_G" class="0">
 <segment>
 <pinref part="CATHODES" gate="G$1" pin="7"/>
 <wire x1="43.18" y1="53.34" x2="50.8" y2="53.34" width="0.1524" layer="91"/>
@@ -5184,7 +5184,7 @@ Source: http://www.murata.com .. GRM43DR72E224KW01.pdf</description>
 <label x="73.66" y="22.86" size="1.778" layer="95"/>
 </segment>
 </net>
-<net name="CATH3" class="0">
+<net name="SEG_F" class="0">
 <segment>
 <pinref part="CATHODES" gate="G$1" pin="1"/>
 <wire x1="43.18" y1="60.96" x2="50.8" y2="60.96" width="0.1524" layer="91"/>
@@ -5196,7 +5196,7 @@ Source: http://www.murata.com .. GRM43DR72E224KW01.pdf</description>
 <label x="73.66" y="17.78" size="1.778" layer="95"/>
 </segment>
 </net>
-<net name="CATH2" class="0">
+<net name="SEG_B" class="0">
 <segment>
 <pinref part="CATHODES" gate="G$1" pin="9"/>
 <wire x1="43.18" y1="50.8" x2="50.8" y2="50.8" width="0.1524" layer="91"/>
@@ -5208,7 +5208,7 @@ Source: http://www.murata.com .. GRM43DR72E224KW01.pdf</description>
 <label x="73.66" y="25.4" size="1.778" layer="95"/>
 </segment>
 </net>
-<net name="CATH1" class="0">
+<net name="SEG_A" class="0">
 <segment>
 <pinref part="CATHODES" gate="G$1" pin="3"/>
 <wire x1="43.18" y1="58.42" x2="50.8" y2="58.42" width="0.1524" layer="91"/>
