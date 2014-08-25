@@ -63,6 +63,7 @@ void DisplayController::cathodeLow(uint8_t bit) {
 }
 
 void DisplayController::setValue(int64_t val) {
+  // Serial.println((long)val);
   for (int i = 0; i < numDigits; i++) {
     uint8_t segs = digit2segs[val%10];
     DEBUG("current digit", (int)(val%10));

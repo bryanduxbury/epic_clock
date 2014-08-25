@@ -17,10 +17,14 @@ void setup() {
 }
 
 void loop() {
-  for (int i = 0; i < 100; i++) {
-    Serial.println(i);
+  // for (int64_t i = 0; i < 10; i++) {
+  //   display.setValue(i + i * 10L + i * 100L + i * 1000L + i * 10000L + i * 100000L);
+  //   delay(500);
+  // }
+  for (int64_t i = 0; i < 999999; i++) {
+    // Serial.println(i);
     display.setValue(i);
-    delay(500);
+    delay(200);
   }
 }
 
