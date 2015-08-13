@@ -3,6 +3,8 @@
 // - set the digit carrier back ever so slightly so the tabs are fully captured
 
 t = 3;
+l = 0.005 * 25.4;
+k = l / 2;
 
 digit_w = 50;
 digit_h = 100;
@@ -17,6 +19,11 @@ screw_d = 3;
 
 tab_width = 10;
 
+mounting_screw_head_d = 8;
+mounting_screw_shaft_d = 4;
+
+closing_screw_shaft_d = 3;
+
 function total_width() = digit_w * 6 
     + 3 * digit_separation 
     + 2 * section_separation 
@@ -28,6 +35,12 @@ total_height = digit_h + 2 * gutter + 2 * t;
 
 module _e() {
   linear_extrude(height=t, center=true) children();
+}
+
+module _corners(dx,dy) {
+  for (x=[-1,1], y=[-1,1]) {
+    translate([x * dx, y * dy, 0]) children();
+  }
 }
 
 module _for_digit_positions() {
@@ -143,7 +156,14 @@ module digit_carrier() {
 
 module side() {
   difference() {
-    square(size=[total_depth, total_height], center=true);
+    union() {
+      square(size=[total_depth, total_height - 2 * t], center=true);
+      for (x=[-1,1], y=[-1,1]) {
+        translate([x * total_depth/4, y * (total_height/2 - t), 0]) 
+          square(size=[tab_width, t*2], center=true);
+      }
+    }
+    
     translate([-total_depth/2, 0, 0]) 
       square(size=[2*t, total_height - 2 * tab_width], center=true);
       
@@ -181,6 +201,11 @@ module _top_bottom_base() {
     
     translate([0, -total_depth/2, 0]) 
       square(size=[total_width() - 2 * tab_width, 2*t], center=true);
+
+    for (x=[-1,1], y=[-1,1]) {
+      translate([x * total_width() / 2, y * total_depth/4, 0]) 
+        square(size=[t*2, tab_width], center=true);
+    }
   }
 }
 
@@ -193,14 +218,31 @@ module bottom() {
 }
 
 module back() {
-  square(size=[total_width()-2*t, total_height-2*t], center=true);
+  assign(inside_w = total_width() - t * 2)
+  assign(inside_h = total_height - t * 2)
+  difference() {
+    square(size=[total_width()-2*t, total_height-2*t], center=true);    
+    _corners(inside_w / 2 - 2 * t - closing_screw_shaft_d/2, inside_h / 2 - 2 * t - closing_screw_shaft_d/2) {
+      circle(r=closing_screw_shaft_d/2-l, $fn=36);
+    }
+  }
 }
 
-module back_frame(args) {
+module back_frame() {
+  assign(inside_w = total_width() - t * 2)
+  assign(inside_h = total_height - t * 2)
   difference() {
-    // square(size=[total_width(), total_height], center=true);
-    _insert_base()
-    square(size=[total_width() - t*4, total_height - t*4], center=true);
+    _insert_base();
+    _corners(inside_w / 2 - 2 * t - closing_screw_shaft_d/2, inside_h / 2 - 2 * t - closing_screw_shaft_d/2) {
+      circle(r=closing_screw_shaft_d/2-l, $fn=36);
+    }
+    
+    difference() {
+      square(size=[total_width() - t*5, total_height - t*5], center=true);
+      _corners((total_width() - t*5) / 2, (total_height - t*5) / 2) {
+        rotate([0, 0, 45]) square(size=[20, 20], center=true);
+      }
+    }
   }
 }
 
@@ -231,8 +273,14 @@ module _assembled() {
   color("orange") translate([0, total_depth/2 - 2*t, -(total_height/2 - t/2)])
     _e() bottom();
     
-  translate([0, total_depth - t * 3 - t/2, 0]) rotate([90, 0, 0]) _e() back_frame();
-  color("pink") translate([0, total_depth - t * 2 - t/2, 0]) rotate([90, 0, 0]) _e() back();
+  translate([0, total_depth - t * 3 - t/2, 0]) 
+    rotate([90, 0, 0]) 
+      _e() back_frame();
+
+  color("pink")
+    translate([0, total_depth - t * 2 - t/2, 0])
+      rotate([90, 0, 0])
+        _e() back();
   
   color([0/255, 0/255, 0/255, 0.25]) 
     translate([0, -t * 1.5, 0]) 
